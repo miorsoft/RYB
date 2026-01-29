@@ -1,0 +1,1910 @@
+	TITLE	D:\Dropbox\VB6\____PhotoModularFX_0_3\modEXECUTE3.bas
+	.386P
+include listing.inc
+if @Version gt 510
+.model FLAT
+else
+_TEXT	SEGMENT PARA USE32 PUBLIC 'CODE'
+_TEXT	ENDS
+_DATA	SEGMENT DWORD USE32 PUBLIC 'DATA'
+_DATA	ENDS
+CONST	SEGMENT DWORD USE32 PUBLIC 'CONST'
+CONST	ENDS
+_BSS	SEGMENT DWORD USE32 PUBLIC 'BSS'
+_BSS	ENDS
+_TLS	SEGMENT DWORD USE32 PUBLIC 'TLS'
+_TLS	ENDS
+text$1	SEGMENT PARA USE32 PUBLIC ''
+text$1	ENDS
+;	COMDAT ?ACTION288_NewNodeTEST3@modEXECUTE3@@AAGXXZ
+text$1	SEGMENT PARA USE32 PUBLIC ''
+text$1	ENDS
+FLAT	GROUP _DATA, CONST, _BSS
+	ASSUME	CS: FLAT, DS: FLAT, SS: FLAT
+endif
+PUBLIC	?ACTION288_NewNodeTEST3@modEXECUTE3@@AAGXXZ	; modEXECUTE3::ACTION288_NewNodeTEST3
+PUBLIC	__real@8@3ffe9645a1cac0831000
+PUBLIC	__real@8@3ffd9916872b020c4800
+PUBLIC	__real@8@3ffbe978d4fdf3b64800
+PUBLIC	__real@4@3fff8000000000000000
+PUBLIC	__real@4@4003a000000000000000
+PUBLIC	__real@8@4002a000000000000000
+PUBLIC	__real@8@3ffe8000000000000000
+PUBLIC	__real@8@3fff8000000000000000
+PUBLIC	__real@8@3ffdb333333333333000
+PUBLIC	__real@8@3ffc9999999999999800
+PUBLIC	__real@8@3ffed999999999999800
+EXTRN	__imp____vbaUbound:NEAR
+EXTRN	__imp____vbaRedim:NEAR
+EXTRN	?RGB2RYB_INIT@modColorSpaces@@AAGXXZ:NEAR	; modColorSpaces::RGB2RYB_INIT
+EXTRN	__imp_@__vbaFpI4:NEAR
+EXTRN	__imp____vba@09F6204C:NEAR
+EXTRN	_modEXECUTE:BYTE
+EXTRN	?SETprogress@modEXECUTE@@AAGXXZ:NEAR		; modEXECUTE::SETprogress
+EXTRN	?FastMeanVariance@modzAS@@AAGXXZ:NEAR		; modzAS::FastMeanVariance
+EXTRN	?RGB2rybSmista@modColorSpaces@@AAGXXZ:NEAR	; modColorSpaces::RGB2rybSmista
+EXTRN	__imp____vbaAryLock:NEAR
+EXTRN	__imp____vbaAryUnlock:NEAR
+EXTRN	?Map2@ModVECTMATH@@AAGXXZ:NEAR			; ModVECTMATH::Map2
+EXTRN	__imp____vbaPowerR8:NEAR
+EXTRN	?noise3@ModVECTMATH@@AAGXXZ:NEAR		; ModVECTMATH::noise3
+EXTRN	?vec3@ModVECTMATH@@AAGXXZ:NEAR			; ModVECTMATH::vec3
+EXTRN	__imp____vbaAryCopy:NEAR
+EXTRN	?RndM@modRND@@AAGXXZ:NEAR			; modRND::RndM
+EXTRN	__imp____vbaI4Var:NEAR
+EXTRN	__imp____vbaVarAdd:NEAR
+EXTRN	__imp____vba@09F645A0:NEAR
+EXTRN	__imp____vbaFreeVarList:NEAR
+EXTRN	?Mix@ModVECTMATH@@AAGXXZ:NEAR			; ModVECTMATH::Mix
+EXTRN	?Singles2PREV@modMISC@@AAGXXZ:NEAR		; modMISC::Singles2PREV
+EXTRN	__imp_@__vbaStrCopy:NEAR
+EXTRN	___vba@09F29414:BYTE
+EXTRN	__imp_@__vbaFreeStr:NEAR
+EXTRN	?ryb2RGB@modColorSpaces@@AAGXXZ:NEAR		; modColorSpaces::ryb2RGB
+EXTRN	__imp____vbaAryDestruct:NEAR
+EXTRN	___vbaExceptHandler:NEAR
+EXTRN	__except_list:DWORD
+EXTRN	__fltused:NEAR
+;	COMDAT CONST
+; File D:\Dropbox\VB6\____PhotoModularFX_0_3\modEXECUTE3.bas
+CONST	SEGMENT
+$S100	DB	06H, 00H
+	DB	04H, 00H
+	DB	00H, 00H, 00H, 00H
+	DD	FLAT:$L98
+	DD	FLAT:$L99
+CONST	ENDS
+;	COMDAT __real@8@3ffe9645a1cac0831000
+CONST	SEGMENT
+__real@8@3ffe9645a1cac0831000 DQ 03fe2c8b439581062r ; 0.587
+CONST	ENDS
+;	COMDAT __real@8@3ffd9916872b020c4800
+CONST	SEGMENT
+__real@8@3ffd9916872b020c4800 DQ 03fd322d0e5604189r ; 0.299
+CONST	ENDS
+;	COMDAT __real@8@3ffbe978d4fdf3b64800
+CONST	SEGMENT
+__real@8@3ffbe978d4fdf3b64800 DQ 03fbd2f1a9fbe76c9r ; 0.114
+CONST	ENDS
+;	COMDAT __real@4@3fff8000000000000000
+CONST	SEGMENT
+__real@4@3fff8000000000000000 DD 03f800000r	; 1
+CONST	ENDS
+;	COMDAT __real@4@4003a000000000000000
+CONST	SEGMENT
+__real@4@4003a000000000000000 DD 041a00000r	; 20
+CONST	ENDS
+;	COMDAT __real@8@4002a000000000000000
+CONST	SEGMENT
+__real@8@4002a000000000000000 DQ 04024000000000000r ; 10
+CONST	ENDS
+;	COMDAT __real@8@3ffe8000000000000000
+CONST	SEGMENT
+__real@8@3ffe8000000000000000 DQ 03fe0000000000000r ; 0.5
+CONST	ENDS
+;	COMDAT __real@8@3fff8000000000000000
+CONST	SEGMENT
+__real@8@3fff8000000000000000 DQ 03ff0000000000000r ; 1
+CONST	ENDS
+;	COMDAT __real@8@3ffdb333333333333000
+CONST	SEGMENT
+__real@8@3ffdb333333333333000 DQ 03fd6666666666666r ; 0.35
+CONST	ENDS
+;	COMDAT __real@8@3ffc9999999999999800
+CONST	SEGMENT
+__real@8@3ffc9999999999999800 DQ 03fc3333333333333r ; 0.15
+CONST	ENDS
+;	COMDAT __real@8@3ffed999999999999800
+CONST	SEGMENT
+__real@8@3ffed999999999999800 DQ 03feb333333333333r ; 0.85
+CONST	ENDS
+;	COMDAT ?ACTION288_NewNodeTEST3@modEXECUTE3@@AAGXXZ
+text$1	SEGMENT
+_OV3$ = 32
+_OV2$ = 28
+_OV1$ = 24
+_V3$ = 20
+_V2$ = 16
+_V1$ = 12
+_Caller$ = 8
+_Radius$ = -20
+_I$ = -24
+_Y2$ = -28
+_B1$ = -32
+_R1$ = -36
+_B2$ = -40
+_R2$ = -44
+_Noise$ = -48
+_mean$ = -56
+_SA$ = -60
+_NIT$ = -64
+_XX$ = -68
+_SB$ = -72
+_SC$ = -76
+_P$ = -80
+_MMM$ = -88
+_DA$ = -96
+_DB$ = -104
+_DC$ = -112
+_Y$ = -116
+_Gray$ = -120
+_W$ = -124
+_Varianz$ = -128
+_Y1$ = -132
+_H$ = -140
+_unnamed_var1$ = -144
+_unnamed_var1$ = -148
+_unnamed_var1$ = -152
+_unnamed_var1$ = -156
+_unnamed_var1$ = -172
+_unnamed_var1$ = -188
+_unnamed_var1$ = -204
+_unnamed_var1$ = -236
+_unnamed_var1$ = -240
+_unnamed_var1$ = -244
+_unnamed_var1$ = -248
+_unnamed_var1$ = -252
+_unnamed_var1$ = -256
+_unnamed_var1$ = -260
+_unnamed_var1$ = -280
+__$SEHRec$ = -16
+?ACTION288_NewNodeTEST3@modEXECUTE3@@AAGXXZ PROC NEAR	; modEXECUTE3::ACTION288_NewNodeTEST3, COMDAT
+
+; 12   :                                   OV3() As Single)
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 8
+	push	OFFSET FLAT:___vbaExceptHandler
+	mov	eax, DWORD PTR fs:__except_list
+	push	eax
+	mov	DWORD PTR fs:__except_list, esp
+	sub	esp, 360				; 00000168H
+	push	ebx
+	push	esi
+	push	edi
+	mov	DWORD PTR __$SEHRec$[ebp+8], esp
+	mov	DWORD PTR __$SEHRec$[ebp+12], OFFSET FLAT:$S100
+
+; 13   : 
+; 14   : 
+; 15   : 
+; 16   :     Dim W&, H&
+; 17   :     Dim X&, Y&
+; 18   :     Dim XX&, YY&
+; 19   : 
+; 20   :     Dim R1()      As Single
+; 21   :     Dim Y1()      As Single
+; 22   :     Dim B1()      As Single
+; 23   :     Dim R2()      As Single
+; 24   :     Dim Y2()      As Single
+; 25   :     Dim B2()      As Single
+; 26   :     Dim mean()    As Single
+; 27   :     Dim Varianz() As Single
+; 28   :     Dim Gray()    As Single
+; 29   :     Dim Noise()   As Single
+; 30   : 
+; 31   :     Dim NIT       As Long
+; 32   :     Dim I         As Long
+; 33   : 
+; 34   :     W = UBound(V1, 1)
+
+	mov	ebx, DWORD PTR _V1$[ebp]
+	mov	ecx, DWORD PTR [ebx]
+	xor	esi, esi
+	xor	eax, eax
+	mov	DWORD PTR _unnamed_var1$[ebp], eax
+	push	ecx
+	mov	DWORD PTR _unnamed_var1$[ebp+4], eax
+	push	1
+	mov	DWORD PTR _Y2$[ebp], esi
+	mov	DWORD PTR _B1$[ebp], esi
+	mov	DWORD PTR _R1$[ebp], esi
+	mov	DWORD PTR _B2$[ebp], esi
+	mov	DWORD PTR _R2$[ebp], esi
+	mov	DWORD PTR _Noise$[ebp], esi
+	mov	DWORD PTR _mean$[ebp], esi
+	mov	DWORD PTR _SA$[ebp], esi
+	mov	DWORD PTR _SB$[ebp], esi
+	mov	DWORD PTR _SC$[ebp], esi
+	mov	DWORD PTR _P$[ebp], esi
+	mov	DWORD PTR _MMM$[ebp], esi
+	mov	DWORD PTR _DA$[ebp], esi
+	mov	DWORD PTR _DB$[ebp], esi
+	mov	DWORD PTR _DC$[ebp], esi
+	mov	DWORD PTR _Gray$[ebp], esi
+	mov	DWORD PTR _Varianz$[ebp], esi
+	mov	DWORD PTR _Y1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	mov	DWORD PTR _unnamed_var1$[ebp+8], eax
+	call	DWORD PTR __imp____vbaUbound
+
+; 35   :     H = UBound(V1, 2)
+
+	mov	edx, DWORD PTR [ebx]
+	push	edx
+	mov	edi, eax
+	push	2
+	mov	DWORD PTR _W$[ebp], edi
+	call	DWORD PTR __imp____vbaUbound
+
+; 36   : 
+; 37   : 
+; 38   :     ReDim OV1(W, H)
+
+	mov	ebx, DWORD PTR __imp____vbaRedim
+	push	esi
+	push	edi
+	push	esi
+	push	eax
+	push	2
+	mov	DWORD PTR _H$[ebp], eax
+	mov	eax, DWORD PTR _OV1$[ebp]
+	push	4
+	push	eax
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 39   :     ReDim OV2(W, H)
+
+	mov	ecx, DWORD PTR _H$[ebp]
+	mov	edx, DWORD PTR _OV2$[ebp]
+	push	esi
+	push	edi
+	push	esi
+	push	ecx
+	push	2
+	push	4
+	push	edx
+	push	4
+	push	128					; 00000080H
+	call	ebx
+	add	esp, 72					; 00000048H
+
+; 40   :     ReDim OV3(W, H)
+
+	push	esi
+	push	edi
+	push	esi
+	mov	eax, DWORD PTR _H$[ebp]
+	mov	ecx, DWORD PTR _OV3$[ebp]
+	push	eax
+	push	2
+	push	4
+	push	ecx
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 41   : 
+; 42   :     ReDim R1(W, H)
+
+	mov	edx, DWORD PTR _H$[ebp]
+	push	esi
+	push	edi
+	push	esi
+	push	edx
+	push	2
+	push	4
+	lea	eax, DWORD PTR _R1$[ebp]
+	push	eax
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 43   :     ReDim Y1(W, H)
+
+	mov	ecx, DWORD PTR _H$[ebp]
+	add	esp, 72					; 00000048H
+	push	esi
+	push	edi
+	push	esi
+	push	ecx
+	push	2
+	push	4
+	lea	edx, DWORD PTR _Y1$[ebp]
+	push	edx
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 44   :     ReDim B1(W, H)
+
+	mov	eax, DWORD PTR _H$[ebp]
+	push	esi
+	push	edi
+	push	esi
+	push	eax
+	push	2
+	push	4
+	lea	ecx, DWORD PTR _B1$[ebp]
+	push	ecx
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 45   :     ReDim R2(W, H)
+
+	mov	edx, DWORD PTR _H$[ebp]
+	add	esp, 72					; 00000048H
+	push	esi
+	push	edi
+	push	esi
+	push	edx
+	push	2
+	push	4
+	lea	eax, DWORD PTR _R2$[ebp]
+	push	eax
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 46   :     ReDim Y2(W, H)
+
+	mov	ecx, DWORD PTR _H$[ebp]
+	push	esi
+	push	edi
+	push	esi
+	push	ecx
+	push	2
+	push	4
+	lea	edx, DWORD PTR _Y2$[ebp]
+	push	edx
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 47   :     ReDim B2(W, H)
+
+	mov	eax, DWORD PTR _H$[ebp]
+	add	esp, 72					; 00000048H
+	push	esi
+	push	edi
+	push	esi
+	push	eax
+	push	2
+	push	4
+	lea	ecx, DWORD PTR _B2$[ebp]
+	push	ecx
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 48   :     ReDim Gray(W, H)
+
+	mov	edx, DWORD PTR _H$[ebp]
+	push	esi
+	push	edi
+	push	esi
+	push	edx
+	push	2
+	push	4
+	lea	eax, DWORD PTR _Gray$[ebp]
+	push	eax
+	push	4
+	push	128					; 00000080H
+	call	ebx
+
+; 49   :     ReDim Noise(W, H)
+
+	mov	ecx, DWORD PTR _H$[ebp]
+	add	esp, 72					; 00000048H
+	push	esi
+	push	edi
+	push	esi
+	push	ecx
+	push	2
+	push	4
+	lea	edx, DWORD PTR _Noise$[ebp]
+	push	edx
+	push	4
+	push	128					; 00000080H
+	call	ebx
+	add	esp, 36					; 00000024H
+
+; 50   : 
+; 51   :     Dim A!, B!, C!
+; 52   :     Dim PIX       As Long
+; 53   :     Dim P!
+; 54   :     Dim MMM!
+; 55   :     Dim Radius    As Long
+; 56   : 
+; 57   :     Dim SA!
+; 58   :     Dim SB!
+; 59   :     Dim SC!
+; 60   : 
+; 61   :     Dim DA!
+; 62   :     Dim DB!
+; 63   :     Dim DC!
+; 64   : 
+; 65   : 
+; 66   :     '    InizializzaMappe
+; 67   :     RGB2RYB_INIT
+
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	mov	DWORD PTR _unnamed_var1$[ebp], 6
+	call	?RGB2RYB_INIT@modColorSpaces@@AAGXXZ	; modColorSpaces::RGB2RYB_INIT
+
+; 68   : 
+; 69   : 
+; 70   :     Radius = Val(MAINparams(Caller).P(1))
+
+	mov	ecx, DWORD PTR _modEXECUTE+44
+	mov	edx, DWORD PTR [ecx+20]
+	mov	ebx, DWORD PTR _Caller$[ebp]
+	mov	eax, ebx
+	sub	eax, edx
+	lea	edx, DWORD PTR [eax+eax*4]
+	mov	eax, DWORD PTR [ecx+12]
+	mov	ecx, DWORD PTR [eax+edx*8]
+	push	ecx
+	call	DWORD PTR __imp____vba@09F6204C
+	call	DWORD PTR __imp_@__vbaFpI4
+	mov	DWORD PTR _Radius$[ebp], eax
+
+; 71   :     NIT = Val(MAINparams(Caller).P(2))
+
+	mov	eax, DWORD PTR _modEXECUTE+44
+	mov	ecx, DWORD PTR [eax+20]
+	mov	eax, DWORD PTR [eax+12]
+	sub	ebx, ecx
+	lea	edx, DWORD PTR [ebx+ebx*4]
+	mov	ecx, DWORD PTR [eax+edx*8+4]
+	push	ecx
+	call	DWORD PTR __imp____vba@09F6204C
+	call	DWORD PTR __imp_@__vbaFpI4
+
+; 72   : 
+; 73   :     SETprogress 0
+
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	push	-1
+	push	esi
+	mov	DWORD PTR _NIT$[ebp], eax
+	mov	DWORD PTR _unnamed_var1$[ebp], -1
+	call	?SETprogress@modEXECUTE@@AAGXXZ		; modEXECUTE::SETprogress
+
+; 74   : 
+; 75   :     For Y = 0& To H
+
+	xor	ebx, ebx
+$L235:
+
+; 76   :         For X = 0& To W
+
+	cmp	ebx, DWORD PTR _H$[ebp]
+	mov	DWORD PTR _Y$[ebp], ebx
+	jg	$L110
+	xor	eax, eax
+$L112:
+
+; 77   :             Gray(X, Y) = V1(X, Y) * 0.299 + V2(X, Y) * 0.587 + V3(X, Y) * 0.114
+
+	cmp	eax, edi
+	jg	$L113
+	mov	ecx, DWORD PTR _V2$[ebp]
+	mov	ecx, DWORD PTR [ecx]
+	mov	ebx, DWORD PTR _Y$[ebp]
+	sub	ebx, DWORD PTR [ecx+20]
+	mov	edx, DWORD PTR _V1$[ebp]
+	imul	ebx, DWORD PTR [ecx+24]
+	sub	ebx, DWORD PTR [ecx+28]
+	mov	ecx, DWORD PTR [ecx+12]
+	mov	edx, DWORD PTR [edx]
+	add	ebx, eax
+	fld	DWORD PTR [ecx+ebx*4]
+	mov	ebx, DWORD PTR _Y$[ebp]
+	fmul	QWORD PTR __real@8@3ffe9645a1cac0831000
+	mov	ecx, ebx
+	sub	ecx, DWORD PTR [edx+20]
+	imul	ecx, DWORD PTR [edx+24]
+	sub	ecx, DWORD PTR [edx+28]
+	mov	edx, DWORD PTR [edx+12]
+	add	ecx, eax
+	fld	DWORD PTR [edx+ecx*4]
+	mov	ecx, DWORD PTR _V3$[ebp]
+	mov	ecx, DWORD PTR [ecx]
+	fmul	QWORD PTR __real@8@3ffd9916872b020c4800
+	mov	edx, ebx
+	sub	edx, DWORD PTR [ecx+20]
+	faddp	ST(1), ST(0)
+	imul	edx, DWORD PTR [ecx+24]
+	sub	edx, DWORD PTR [ecx+28]
+	mov	ecx, DWORD PTR [ecx+12]
+	add	edx, eax
+	fld	DWORD PTR [ecx+edx*4]
+	mov	ecx, DWORD PTR _Gray$[ebp]
+	fmul	QWORD PTR __real@8@3ffbe978d4fdf3b64800
+	mov	edx, ebx
+	sub	edx, DWORD PTR [ecx+20]
+	imul	edx, DWORD PTR [ecx+24]
+	sub	edx, DWORD PTR [ecx+28]
+	mov	ecx, DWORD PTR [ecx+12]
+	add	edx, eax
+	faddp	ST(1), ST(0)
+	fstp	DWORD PTR [ecx+edx*4]
+	mov	ecx, 1
+	add	eax, ecx
+	jmp	$L112
+$L113:
+
+; 76   :         For X = 0& To W
+
+	mov	eax, 1
+	add	ebx, eax
+	jmp	$L235
+$L110:
+
+; 78   : 
+; 79   :         Next
+; 80   :     Next
+; 81   : 
+; 82   :     FastMeanVariance Gray(), Radius, mean(), Varianz(), True
+
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	mov	edx, DWORD PTR _Radius$[ebp]
+	lea	eax, DWORD PTR _Varianz$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _mean$[ebp]
+	push	ecx
+	push	edx
+	lea	eax, DWORD PTR _Gray$[ebp]
+	push	eax
+	mov	DWORD PTR _unnamed_var1$[ebp], -1
+	call	?FastMeanVariance@modzAS@@AAGXXZ	; modzAS::FastMeanVariance
+
+; 83   : 
+; 84   :     For Y = 0 To H
+
+	mov	ecx, DWORD PTR _Varianz$[ebp]
+	xor	ebx, ebx
+$L116:
+
+; 85   :         For X = 0 To W
+
+	cmp	ebx, DWORD PTR _H$[ebp]
+	jg	$L117
+	xor	edi, edi
+$L119:
+
+; 86   :             R1(X, Y) = V1(X, Y)
+
+	cmp	edi, DWORD PTR _W$[ebp]
+	jg	$L120
+	mov	ecx, DWORD PTR _V1$[ebp]
+	mov	eax, DWORD PTR [ecx]
+	mov	ecx, DWORD PTR [eax+20]
+	mov	esi, DWORD PTR [eax+28]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+12]
+	mov	eax, DWORD PTR _R1$[ebp]
+	sub	edx, esi
+	mov	esi, ebx
+	sub	esi, DWORD PTR [eax+20]
+	add	edx, edi
+	imul	esi, DWORD PTR [eax+24]
+	sub	esi, DWORD PTR [eax+28]
+	mov	ecx, DWORD PTR [ecx+edx*4]
+	mov	eax, DWORD PTR [eax+12]
+
+; 87   :             Y1(X, Y) = V2(X, Y)
+
+	mov	edx, DWORD PTR _V2$[ebp]
+	add	esi, edi
+	mov	DWORD PTR [eax+esi*4], ecx
+	mov	eax, DWORD PTR [edx]
+	mov	esi, DWORD PTR [eax+20]
+	mov	edx, DWORD PTR [eax+28]
+	mov	ecx, ebx
+	sub	ecx, esi
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, edx
+	mov	edx, DWORD PTR [eax+12]
+	mov	eax, DWORD PTR _Y1$[ebp]
+	mov	esi, ebx
+	sub	esi, DWORD PTR [eax+20]
+	add	ecx, edi
+	imul	esi, DWORD PTR [eax+24]
+	sub	esi, DWORD PTR [eax+28]
+	mov	ecx, DWORD PTR [edx+ecx*4]
+	mov	eax, DWORD PTR [eax+12]
+
+; 88   :             B1(X, Y) = V3(X, Y)
+
+	mov	edx, DWORD PTR _V3$[ebp]
+	add	esi, edi
+	mov	DWORD PTR [eax+esi*4], ecx
+	mov	eax, DWORD PTR [edx]
+	mov	edx, DWORD PTR [eax+20]
+	mov	esi, DWORD PTR [eax+28]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [eax+12]
+	mov	eax, DWORD PTR _B1$[ebp]
+	sub	ecx, esi
+	mov	esi, ebx
+	sub	esi, DWORD PTR [eax+20]
+	add	ecx, edi
+	imul	esi, DWORD PTR [eax+24]
+	sub	esi, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	mov	ecx, DWORD PTR [edx+ecx*4]
+	add	esi, edi
+	mov	DWORD PTR [eax+esi*4], ecx
+
+; 89   : 
+; 90   : 
+; 91   :             RGB2rybSmista R1(X, Y), Y1(X, Y), B1(X, Y)
+
+	mov	edx, DWORD PTR _B1$[ebp]
+	mov	esi, DWORD PTR __imp____vbaAryLock
+	push	edx
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	esi
+	mov	ecx, DWORD PTR _Y1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	esi
+	mov	eax, DWORD PTR _R1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	esi
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	mov	ecx, DWORD PTR [eax+20]
+	mov	esi, DWORD PTR [eax+28]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	sub	edx, esi
+	add	edx, edi
+	mov	eax, DWORD PTR [eax+12]
+	lea	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	mov	esi, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, esi
+	imul	edx, DWORD PTR [eax+24]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	mov	esi, DWORD PTR [eax+28]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, esi
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	push	ecx
+	call	?RGB2rybSmista@modColorSpaces@@AAGXXZ	; modColorSpaces::RGB2rybSmista
+	mov	esi, DWORD PTR __imp____vbaAryUnlock
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	esi
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	esi
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	esi
+
+; 92   : 
+; 93   :             If Varianz(X, Y) > MMM Then MMM = Varianz(X, Y)
+
+	mov	ecx, DWORD PTR _Varianz$[ebp]
+	mov	eax, DWORD PTR [ecx+20]
+	mov	esi, DWORD PTR [ecx+28]
+	mov	edx, ebx
+	sub	edx, eax
+	imul	edx, DWORD PTR [ecx+24]
+	mov	eax, DWORD PTR [ecx+12]
+	sub	edx, esi
+	add	edx, edi
+	lea	edx, DWORD PTR [eax+edx*4]
+	fld	DWORD PTR [edx]
+	fcomp	DWORD PTR _MMM$[ebp]
+	fnstsw	ax
+	test	ah, 65					; 00000041H
+	jne	SHORT $L124
+	mov	edx, DWORD PTR [edx]
+	mov	DWORD PTR _MMM$[ebp], edx
+$L124:
+	mov	eax, 1
+	add	edi, eax
+	xor	esi, esi
+	jmp	$L119
+$L120:
+
+; 85   :         For X = 0 To W
+
+	mov	eax, 1
+	add	ebx, eax
+	jmp	$L116
+$L117:
+
+; 94   : 
+; 95   : 
+; 96   : 
+; 97   :         Next
+; 98   :     Next
+; 99   : 
+; 100  : 
+; 101  :     For Y = 0 To H
+
+	xor	ebx, ebx
+$L236:
+
+; 102  :         For X = 0 To W
+
+	cmp	ebx, DWORD PTR _H$[ebp]
+	mov	DWORD PTR _Y$[ebp], ebx
+	jg	$L127
+	xor	edi, edi
+$L129:
+
+; 103  :             Varianz(X, Y) = Map2(Varianz(X, Y), 1 / MMM, 0, 0, 1)
+
+	cmp	edi, DWORD PTR _W$[ebp]
+	jg	$L130
+	fld	DWORD PTR __real@4@3fff8000000000000000
+	push	ecx
+	fdiv	DWORD PTR _MMM$[ebp]
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	mov	DWORD PTR _unnamed_var1$[ebp], 1065353216 ; 3f800000H
+	mov	DWORD PTR _unnamed_var1$[ebp], 0
+	mov	DWORD PTR _unnamed_var1$[ebp], 0
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp____vbaAryLock
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	push	ecx
+	call	?Map2@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Map2
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp____vbaAryUnlock
+	mov	eax, DWORD PTR _Varianz$[ebp]
+	fld	DWORD PTR _unnamed_var1$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+
+; 104  :             Varianz(X, Y) = Varianz(X, Y) ^ 0.2
+
+	push	1070176665				; 3fc99999H
+	push	-1717986918				; 9999999aH
+	fstp	DWORD PTR [edx+ecx*4]
+	mov	eax, DWORD PTR _Varianz$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	sub	esp, 8
+	fld	DWORD PTR [edx+ecx*4]
+	fstp	QWORD PTR [esp]
+	call	DWORD PTR __imp____vbaPowerR8
+	mov	eax, DWORD PTR _Varianz$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	fstp	DWORD PTR [edx+ecx*4]
+
+; 105  :             Noise(X, Y) = (0.5 + 0.5 * noise3(vec3(20 * mean(X, Y), Y / H * 10, 20 * Varianz(X, Y)))) * Varianz(X, Y)
+
+	mov	eax, DWORD PTR _Varianz$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	fld	DWORD PTR [edx+ecx*4]
+	fmul	DWORD PTR __real@4@4003a000000000000000
+	mov	eax, DWORD PTR _mean$[ebp]
+	mov	ecx, ebx
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	fild	DWORD PTR _Y$[ebp]
+	fidiv	DWORD PTR _H$[ebp]
+	fmul	QWORD PTR __real@8@4002a000000000000000
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	fld	DWORD PTR [edx+ecx*4]
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	fmul	DWORD PTR __real@4@4003a000000000000000
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	call	?vec3@ModVECTMATH@@AAGXXZ		; ModVECTMATH::vec3
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	?noise3@ModVECTMATH@@AAGXXZ		; ModVECTMATH::noise3
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	mov	eax, DWORD PTR _Varianz$[ebp]
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	mov	ecx, ebx
+	fld	DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _Noise$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	fld	DWORD PTR _unnamed_var1$[ebp]
+	fmul	QWORD PTR __real@8@3ffe8000000000000000
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [eax+28]
+	sub	ecx, edx
+	fadd	QWORD PTR __real@8@3ffe8000000000000000
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	fmulp	ST(1), ST(0)
+	mov	eax, 1
+	fstp	DWORD PTR [edx+ecx*4]
+	mov	ecx, DWORD PTR _Varianz$[ebp]
+	add	edi, eax
+	jmp	$L129
+$L130:
+
+; 102  :         For X = 0 To W
+
+	mov	eax, 1
+	add	ebx, eax
+	jmp	$L236
+$L127:
+
+; 106  :         Next
+; 107  :     Next
+; 108  : 
+; 109  : 
+; 110  :     R2() = R1()
+
+	mov	edi, DWORD PTR __imp____vbaAryCopy
+	lea	eax, DWORD PTR _R1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _R2$[ebp]
+	push	ecx
+	call	edi
+
+; 111  :     Y2() = Y1()
+
+	lea	edx, DWORD PTR _Y1$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _Y2$[ebp]
+	push	eax
+	call	edi
+
+; 112  :     B2() = B1()
+
+	lea	ecx, DWORD PTR _B1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _B2$[ebp]
+	push	edx
+	call	edi
+
+; 113  : 
+; 114  : 
+; 115  : 
+; 116  :     For I = 1 To NIT
+
+	mov	DWORD PTR _I$[ebp], 1
+$L137:
+
+; 117  : 
+; 118  :         For Y = 1 To H - 1
+
+	mov	eax, DWORD PTR _I$[ebp]
+	cmp	eax, DWORD PTR _NIT$[ebp]
+	jg	$L138
+	mov	ebx, 1
+$L140:
+
+; 119  :             For X = 1 To W - 1
+
+	mov	ecx, DWORD PTR _H$[ebp]
+	lea	eax, DWORD PTR [ecx-1]
+	cmp	ebx, eax
+	jg	$L141
+	mov	edi, 1
+$L143:
+
+; 120  : 
+; 121  :                 If RndM > Varianz(X, Y) Then
+
+	mov	edx, DWORD PTR _W$[ebp]
+	lea	eax, DWORD PTR [edx-1]
+	cmp	edi, eax
+	jg	$L144
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	call	?RndM@modRND@@AAGXXZ			; modRND::RndM
+	mov	eax, DWORD PTR _Varianz$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	fcomp	DWORD PTR [edx+ecx*4]
+	fnstsw	ax
+	test	ah, 65					; 00000041H
+	jne	$L145
+
+; 122  :                     '               If Rnd > Noise(X, Y) Then
+; 123  : 
+; 124  :                     '                    PIX = Int(RndM * 4)
+; 125  :                     '                    Select Case PIX
+; 126  :                     '                        Case 0
+; 127  :                     '                            XX = X - 1: YY = Y
+; 128  :                     '                        Case 1
+; 129  :                     '                            XX = X + 1: YY = Y
+; 130  :                     '                        Case 2
+; 131  :                     '                            XX = X: YY = Y - 1
+; 132  :                     '                        Case 3
+; 133  :                     '                            XX = X: YY = Y + 1
+; 134  :                     '                    End Select
+; 135  : 
+; 136  : 
+; 137  :                     XX = X + Round((RndM * 2 - 1) * 2)
+
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	call	?RndM@modRND@@AAGXXZ			; modRND::RndM
+	fadd	ST(0), ST(0)
+	push	esi
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	fsub	QWORD PTR __real@8@3fff8000000000000000
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	fadd	ST(0), ST(0)
+	push	edx
+	mov	DWORD PTR _unnamed_var1$[ebp+8], edi
+	fstp	QWORD PTR _unnamed_var1$[ebp+8]
+	mov	DWORD PTR _unnamed_var1$[ebp], 3
+	mov	DWORD PTR _unnamed_var1$[ebp], 5
+	call	DWORD PTR __imp____vba@09F645A0
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	DWORD PTR __imp____vbaVarAdd
+	push	eax
+	call	DWORD PTR __imp____vbaI4Var
+	mov	DWORD PTR _XX$[ebp], eax
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	push	3
+	call	DWORD PTR __imp____vbaFreeVarList
+	add	esp, 16					; 00000010H
+
+; 138  :                     YY = Y + Round((RndM * 2 - 1) * 2)
+
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	mov	DWORD PTR _unnamed_var1$[ebp], esi
+	call	?RndM@modRND@@AAGXXZ			; modRND::RndM
+	fadd	ST(0), ST(0)
+	push	esi
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	fsub	QWORD PTR __real@8@3fff8000000000000000
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	fadd	ST(0), ST(0)
+	push	edx
+	mov	DWORD PTR _unnamed_var1$[ebp+8], ebx
+	fstp	QWORD PTR _unnamed_var1$[ebp+8]
+	mov	DWORD PTR _unnamed_var1$[ebp], 3
+	mov	DWORD PTR _unnamed_var1$[ebp], 5
+	call	DWORD PTR __imp____vba@09F645A0
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	DWORD PTR __imp____vbaVarAdd
+	push	eax
+	call	DWORD PTR __imp____vbaI4Var
+	mov	esi, eax
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	push	3
+	call	DWORD PTR __imp____vbaFreeVarList
+	add	esp, 16					; 00000010H
+
+; 139  :                     If RndM < 0.35 Then YY = YY - 1
+
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	mov	DWORD PTR _unnamed_var1$[ebp], 0
+	push	eax
+	call	?RndM@modRND@@AAGXXZ			; modRND::RndM
+	fcomp	QWORD PTR __real@8@3ffdb333333333333000
+	fnstsw	ax
+	test	ah, 1
+	je	SHORT $L151
+	dec	esi
+$L151:
+
+; 140  : 
+; 141  :                     If XX < 0 Then XX = 0
+
+	mov	ecx, DWORD PTR _XX$[ebp]
+	xor	eax, eax
+	cmp	ecx, eax
+	jge	SHORT $L152
+	mov	DWORD PTR _XX$[ebp], eax
+$L152:
+
+; 142  :                     If YY < 0 Then YY = 0
+
+	cmp	esi, eax
+	jge	SHORT $L153
+	xor	esi, esi
+$L153:
+
+; 143  :                     If XX > W Then XX = W
+
+	mov	ecx, DWORD PTR _W$[ebp]
+	cmp	DWORD PTR _XX$[ebp], ecx
+	jle	SHORT $L154
+	mov	DWORD PTR _XX$[ebp], ecx
+$L154:
+
+; 144  :                     If YY > H Then YY = H
+
+	mov	ecx, DWORD PTR _H$[ebp]
+	cmp	esi, ecx
+	jle	SHORT $L155
+	mov	esi, ecx
+$L155:
+
+; 145  : 
+; 146  : 
+; 147  : 
+; 148  :                     '                    P = 0.9 + RndM * 0.1
+; 149  : 
+; 150  :                     P = 0.85 + RndM * 0.15
+
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	mov	DWORD PTR _unnamed_var1$[ebp], eax
+	call	?RndM@modRND@@AAGXXZ			; modRND::RndM
+	fmul	QWORD PTR __real@8@3ffc9999999999999800
+
+; 151  : 
+; 152  :                     'P = 0.98
+; 153  :                     '                    R2(X, Y) = R2(X, Y) + (R1(XX, YY) - R2(X, Y)) * P
+; 154  :                     '                    Y2(X, Y) = Y2(X, Y) + (Y1(XX, YY) - Y2(X, Y)) * P
+; 155  :                     '                    B2(X, Y) = B2(X, Y) + (B1(XX, YY) - B2(X, Y)) * P
+; 156  : 
+; 157  :                     '' COME SOPRA
+; 158  : 
+; 159  :                     R2(X, Y) = Mix(R2(X, Y), R1(XX, YY), P)
+
+	mov	edx, DWORD PTR _R1$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	fadd	QWORD PTR __real@8@3ffed999999999999800
+	push	eax
+	fstp	DWORD PTR _P$[ebp]
+	call	DWORD PTR __imp____vbaAryLock
+	mov	ecx, DWORD PTR _R2$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	DWORD PTR __imp____vbaAryLock
+	lea	eax, DWORD PTR _P$[ebp]
+	push	eax
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, esi
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	add	ecx, DWORD PTR _XX$[ebp]
+	mov	edx, DWORD PTR [eax+12]
+	lea	eax, DWORD PTR [edx+ecx*4]
+	push	eax
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	lea	eax, DWORD PTR [edx+ecx*4]
+	push	eax
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp____vbaAryUnlock
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	DWORD PTR __imp____vbaAryUnlock
+	fld	DWORD PTR _unnamed_var1$[ebp]
+	mov	eax, DWORD PTR _R2$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	fstp	DWORD PTR [edx+ecx*4]
+
+; 160  :                     Y2(X, Y) = Mix(Y2(X, Y), Y1(XX, YY), P)
+
+	mov	eax, DWORD PTR _Y1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	DWORD PTR __imp____vbaAryLock
+	mov	edx, DWORD PTR _Y2$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	DWORD PTR __imp____vbaAryLock
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	lea	ecx, DWORD PTR _P$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, esi
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, DWORD PTR _XX$[ebp]
+	lea	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	push	ecx
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp____vbaAryUnlock
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	DWORD PTR __imp____vbaAryUnlock
+	fld	DWORD PTR _unnamed_var1$[ebp]
+	mov	eax, DWORD PTR _Y2$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	fstp	DWORD PTR [edx+ecx*4]
+
+; 161  :                     B2(X, Y) = Mix(B2(X, Y), B1(XX, YY), P)
+
+	mov	eax, DWORD PTR _B1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	DWORD PTR __imp____vbaAryLock
+	mov	edx, DWORD PTR _B2$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	DWORD PTR __imp____vbaAryLock
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	lea	ecx, DWORD PTR _P$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, esi
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, DWORD PTR _XX$[ebp]
+	lea	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	push	ecx
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	fstp	DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp____vbaAryUnlock
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	DWORD PTR __imp____vbaAryUnlock
+	mov	eax, DWORD PTR _B2$[ebp]
+	mov	ecx, ebx
+	mov	edx, DWORD PTR [eax+20]
+	fld	DWORD PTR _unnamed_var1$[ebp]
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+	fstp	DWORD PTR [edx+ecx*4]
+
+; 162  : 
+; 163  :                     SA = R1(XX, YY)
+
+	mov	eax, DWORD PTR _R1$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, esi
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	add	ecx, DWORD PTR _XX$[ebp]
+	mov	edx, DWORD PTR [eax+12]
+	fld	DWORD PTR [edx+ecx*4]
+
+; 164  :                     SB = Y1(XX, YY)
+
+	mov	ecx, DWORD PTR _Y1$[ebp]
+	fstp	DWORD PTR _SA$[ebp]
+	mov	edx, esi
+	sub	edx, DWORD PTR [ecx+20]
+	imul	edx, DWORD PTR [ecx+24]
+	sub	edx, DWORD PTR [ecx+28]
+	add	edx, DWORD PTR _XX$[ebp]
+	mov	ecx, DWORD PTR _Y1$[ebp]
+	mov	ecx, DWORD PTR [ecx+12]
+	fld	DWORD PTR [ecx+edx*4]
+
+; 165  :                     SC = B1(XX, YY)
+
+	mov	ecx, DWORD PTR _B1$[ebp]
+	fstp	DWORD PTR _SB$[ebp]
+	mov	edx, esi
+	sub	edx, DWORD PTR [ecx+20]
+	imul	edx, DWORD PTR [ecx+24]
+	sub	edx, DWORD PTR [ecx+28]
+	add	edx, DWORD PTR _XX$[ebp]
+	mov	ecx, DWORD PTR _B1$[ebp]
+	mov	ecx, DWORD PTR [ecx+12]
+	fld	DWORD PTR [ecx+edx*4]
+
+; 166  : 
+; 167  :                     DA = R1(X, Y)
+
+	mov	edx, ebx
+	fstp	DWORD PTR _SC$[ebp]
+	mov	ecx, DWORD PTR [eax+20]
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+
+; 168  :                     DB = Y1(X, Y)
+
+	mov	ecx, ebx
+	fld	DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _Y1$[ebp]
+	fstp	DWORD PTR _DA$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+
+; 169  :                     DC = B1(X, Y)
+
+	mov	eax, DWORD PTR _B1$[ebp]
+	add	ecx, edi
+	fld	DWORD PTR [edx+ecx*4]
+	mov	ecx, ebx
+	fstp	DWORD PTR _DB$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+
+; 170  : 
+; 171  :                     R2(X, Y) = Mix(DA, SA, P)
+
+	lea	eax, DWORD PTR _P$[ebp]
+	push	eax
+	fld	DWORD PTR [edx+ecx*4]
+	lea	ecx, DWORD PTR _SA$[ebp]
+	push	ecx
+	fstp	DWORD PTR _DC$[ebp]
+	lea	edx, DWORD PTR _DA$[ebp]
+	push	edx
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	mov	eax, DWORD PTR _R2$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+
+; 172  :                     Y2(X, Y) = Mix(DB, SB, P)
+
+	lea	eax, DWORD PTR _P$[ebp]
+	push	eax
+	fstp	DWORD PTR [edx+ecx*4]
+	lea	ecx, DWORD PTR _SB$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _DB$[ebp]
+	push	edx
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	mov	eax, DWORD PTR _Y2$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+
+; 173  :                     B2(X, Y) = Mix(DC, SC, P)
+
+	lea	eax, DWORD PTR _P$[ebp]
+	push	eax
+	fstp	DWORD PTR [edx+ecx*4]
+	lea	ecx, DWORD PTR _SC$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _DC$[ebp]
+	push	edx
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	mov	eax, DWORD PTR _B2$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, ebx
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	mov	edx, DWORD PTR [eax+12]
+	add	ecx, edi
+
+; 174  : 
+; 175  :                     P = 1 - P
+; 176  :                     R2(XX, YY) = Mix(SA, DA, P)
+
+	lea	eax, DWORD PTR _P$[ebp]
+	push	eax
+	fstp	DWORD PTR [edx+ecx*4]
+	lea	ecx, DWORD PTR _DA$[ebp]
+	fld	DWORD PTR __real@4@3fff8000000000000000
+	push	ecx
+	fsub	DWORD PTR _P$[ebp]
+	lea	edx, DWORD PTR _SA$[ebp]
+	push	edx
+	fstp	DWORD PTR _P$[ebp]
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	mov	eax, DWORD PTR _R2$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, esi
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	add	ecx, DWORD PTR _XX$[ebp]
+	mov	edx, DWORD PTR [eax+12]
+
+; 177  :                     Y2(XX, YY) = Mix(SB, DB, P)
+
+	lea	eax, DWORD PTR _P$[ebp]
+	push	eax
+	fstp	DWORD PTR [edx+ecx*4]
+	lea	ecx, DWORD PTR _DB$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _SB$[ebp]
+	push	edx
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	mov	eax, DWORD PTR _Y2$[ebp]
+	mov	edx, DWORD PTR [eax+20]
+	mov	ecx, esi
+	sub	ecx, edx
+	imul	ecx, DWORD PTR [eax+24]
+	sub	ecx, DWORD PTR [eax+28]
+	add	ecx, DWORD PTR _XX$[ebp]
+	mov	edx, DWORD PTR [eax+12]
+	fstp	DWORD PTR [edx+ecx*4]
+
+; 178  :                     B2(XX, YY) = Mix(SC, DC, P)
+
+	lea	eax, DWORD PTR _P$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _DC$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _SC$[ebp]
+	push	edx
+	call	?Mix@ModVECTMATH@@AAGXXZ		; ModVECTMATH::Mix
+	mov	eax, DWORD PTR _B2$[ebp]
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, DWORD PTR [eax+28]
+	sub	esi, ecx
+	imul	esi, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR _XX$[ebp]
+	mov	eax, DWORD PTR [eax+12]
+	sub	esi, edx
+	add	esi, ecx
+	fstp	DWORD PTR [eax+esi*4]
+	xor	esi, esi
+$L145:
+	mov	eax, 1
+	add	edi, eax
+	jmp	$L143
+$L144:
+
+; 119  :             For X = 1 To W - 1
+
+	mov	edi, DWORD PTR __imp____vbaAryCopy
+	mov	eax, 1
+	add	ebx, eax
+	jmp	$L140
+$L141:
+
+; 179  : 
+; 180  : 
+; 181  :                     'P = P * 0.25
+; 182  :                     '                    R2(X + 1, Y) = Mix(R2(X + 1, Y), R1(XX, YY), P)
+; 183  :                     '                    Y2(X + 1, Y) = Mix(Y2(X + 1, Y), Y1(XX, YY), P)
+; 184  :                     '                    B2(X + 1, Y) = Mix(B2(X + 1, Y), B1(XX, YY), P)
+; 185  :                     '                    R2(X - 1, Y) = Mix(R2(X - 1, Y), R1(XX, YY), P)
+; 186  :                     '                    Y2(X - 1, Y) = Mix(Y2(X - 1, Y), Y1(XX, YY), P)
+; 187  :                     '                    B2(X - 1, Y) = Mix(B2(X - 1, Y), B1(XX, YY), P)
+; 188  :                     '
+; 189  :                     '                    R2(X, Y - 1) = Mix(R2(X, Y - 1), R1(XX, YY), P)
+; 190  :                     '                    Y2(X, Y - 1) = Mix(Y2(X, Y - 1), Y1(XX, YY), P)
+; 191  :                     '                    B2(X, Y - 1) = Mix(B2(X, Y - 1), B1(XX, YY), P)
+; 192  :                     '                    R2(X, Y + 1) = Mix(R2(X, Y + 1), R1(XX, YY), P)
+; 193  :                     '                    Y2(X, Y + 1) = Mix(Y2(X, Y + 1), Y1(XX, YY), P)
+; 194  :                     '                    B2(X, Y + 1) = Mix(B2(X, Y + 1), B1(XX, YY), P)
+; 195  : 
+; 196  : 
+; 197  :                     '                    R2(XX, YY) = R2(XX, YY) + (R1(X, Y) - R2(XX, YY)) * P
+; 198  :                     '                    Y2(XX, YY) = Y2(XX, YY) + (Y1(X, Y) - Y2(XX, YY)) * P
+; 199  :                     '                    B2(XX, YY) = B2(XX, YY) + (B1(X, Y) - B2(XX, YY)) * P
+; 200  : 
+; 201  :                     'R2(XX, YY) = R1(X, Y)
+; 202  :                     'Y2(XX, YY) = Y1(X, Y)
+; 203  :                     'B2(XX, YY) = B1(X, Y)
+; 204  : 
+; 205  :                 End If
+; 206  : 
+; 207  : 
+; 208  : 
+; 209  :             Next
+; 210  :         Next
+; 211  :         R1() = R2()
+
+	lea	ecx, DWORD PTR _R2$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _R1$[ebp]
+	push	edx
+	call	edi
+
+; 212  :         Y1() = Y2()
+
+	lea	eax, DWORD PTR _Y2$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _Y1$[ebp]
+	push	ecx
+	call	edi
+
+; 213  :         B1() = B2()
+
+	lea	edx, DWORD PTR _B2$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _B1$[ebp]
+	push	eax
+	call	edi
+
+; 214  : 
+; 215  :         If I Mod 10 = 0 Then
+
+	mov	ebx, DWORD PTR _I$[ebp]
+	mov	eax, ebx
+	cdq
+	mov	ecx, 10					; 0000000aH
+	idiv	ecx
+	test	edx, edx
+	jne	SHORT $L157
+
+; 216  :             '                Singles2PREV Varianz, Varianz, Varianz
+; 217  :             Singles2PREV R1, Y1, B1
+
+	mov	edx, OFFSET FLAT:___vba@09F29414
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp_@__vbaStrCopy
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	lea	eax, DWORD PTR _B1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _Y1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _R1$[ebp]
+	push	edx
+	call	?Singles2PREV@modMISC@@AAGXXZ		; modMISC::Singles2PREV
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp_@__vbaFreeStr
+
+; 218  : 
+; 219  :             ' Singles2PREV Noise, Noise, Noise
+; 220  : 
+; 221  :             SETprogress 100 * I / NIT
+
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	lea	eax, DWORD PTR [ebx+ebx*4]
+	lea	ecx, DWORD PTR [eax+eax*4]
+	shl	ecx, 2
+	mov	DWORD PTR -376+[ebp], ecx
+	fild	DWORD PTR -376+[ebp]
+	push	-1
+	push	ecx
+	mov	DWORD PTR _unnamed_var1$[ebp], -1
+	fidiv	DWORD PTR _NIT$[ebp]
+	fstp	DWORD PTR [esp]
+	call	?SETprogress@modEXECUTE@@AAGXXZ		; modEXECUTE::SETprogress
+$L157:
+	mov	eax, 1
+	add	ebx, eax
+	mov	DWORD PTR _I$[ebp], ebx
+	jmp	$L137
+$L138:
+
+; 222  :         End If
+; 223  : 
+; 224  :     Next
+; 225  : 
+; 226  : 
+; 227  :     For Y = 0 To H - 0
+
+	xor	ebx, ebx
+$L163:
+
+; 228  :         For X = 0 To W - 0
+
+	cmp	ebx, DWORD PTR _H$[ebp]
+	jg	$L164
+	xor	edi, edi
+$L166:
+
+; 229  :             ryb2RGB R2(X, Y), Y2(X, Y), B2(X, Y), OV1(X, Y), OV2(X, Y), OV3(X, Y)
+
+	cmp	edi, DWORD PTR _W$[ebp]
+	jg	$L167
+	mov	edx, DWORD PTR _OV3$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	DWORD PTR __imp____vbaAryLock
+	mov	edx, DWORD PTR _OV2$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	DWORD PTR __imp____vbaAryLock
+	mov	edx, DWORD PTR _OV1$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	DWORD PTR __imp____vbaAryLock
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	sub	edx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	lea	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _B2$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	mov	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _Y2$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	mov	ecx, DWORD PTR [eax+28]
+	mov	eax, DWORD PTR [eax+12]
+	sub	edx, ecx
+	add	edx, edi
+	mov	ecx, DWORD PTR [eax+edx*4]
+	mov	eax, DWORD PTR _R2$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, ebx
+	sub	edx, ecx
+	imul	edx, DWORD PTR [eax+24]
+	sub	edx, DWORD PTR [eax+28]
+	add	edx, edi
+	mov	eax, DWORD PTR [eax+12]
+	mov	ecx, DWORD PTR [eax+edx*4]
+	push	ecx
+	call	?ryb2RGB@modColorSpaces@@AAGXXZ		; modColorSpaces::ryb2RGB
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	DWORD PTR __imp____vbaAryUnlock
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	DWORD PTR __imp____vbaAryUnlock
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	DWORD PTR __imp____vbaAryUnlock
+	mov	eax, 1
+	add	edi, eax
+	jmp	$L166
+$L167:
+
+; 228  :         For X = 0 To W - 0
+
+	mov	eax, 1
+	add	ebx, eax
+	jmp	$L163
+$L164:
+
+; 230  :         Next
+; 231  :     Next
+; 232  :     ''OV1 = R2
+; 233  :     ''OV2 = Y2
+; 234  :     ''OV3 = B2
+; 235  : 
+; 236  : 
+; 237  : 
+; 238  : 
+; 239  :     SETprogress 100
+
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	push	-1
+	push	1120403456				; 42c80000H
+	mov	DWORD PTR _unnamed_var1$[ebp], -1
+	call	?SETprogress@modEXECUTE@@AAGXXZ		; modEXECUTE::SETprogress
+	fwait
+	push	$L194
+	jmp	SHORT $L189
+$L99:
+
+; 240  : 
+; 241  : 
+; 242  : 
+; 243  : 
+; 244  : 
+; 245  : 
+; 246  : 
+; 247  : 
+; 248  : End Sub
+
+	mov	esi, DWORD PTR __imp____vbaAryUnlock
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	call	esi
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	call	esi
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	call	esi
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	call	DWORD PTR __imp_@__vbaFreeStr
+	lea	eax, DWORD PTR _unnamed_var1$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _unnamed_var1$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _unnamed_var1$[ebp]
+	push	edx
+	push	3
+	call	DWORD PTR __imp____vbaFreeVarList
+	add	esp, 16					; 00000010H
+	ret	0
+$L189:
+$L98:
+	mov	esi, DWORD PTR __imp____vbaAryDestruct
+	lea	eax, DWORD PTR _Y2$[ebp]
+	push	eax
+	push	0
+	call	esi
+	lea	ecx, DWORD PTR _B1$[ebp]
+	push	ecx
+	push	0
+	call	esi
+	lea	edx, DWORD PTR _R1$[ebp]
+	push	edx
+	push	0
+	call	esi
+	lea	eax, DWORD PTR _B2$[ebp]
+	push	eax
+	push	0
+	call	esi
+	lea	ecx, DWORD PTR _R2$[ebp]
+	push	ecx
+	push	0
+	call	esi
+	lea	edx, DWORD PTR _Noise$[ebp]
+	push	edx
+	push	0
+	call	esi
+	lea	eax, DWORD PTR _mean$[ebp]
+	push	eax
+	push	0
+	call	esi
+	lea	ecx, DWORD PTR _Gray$[ebp]
+	push	ecx
+	push	0
+	call	esi
+	lea	edx, DWORD PTR _Varianz$[ebp]
+	push	edx
+	push	0
+	call	esi
+	lea	eax, DWORD PTR _Y1$[ebp]
+	push	eax
+	push	0
+	call	esi
+$L192:
+	ret	0
+$L194:
+	mov	ecx, DWORD PTR __$SEHRec$[ebp]
+	pop	edi
+	pop	esi
+	mov	DWORD PTR fs:__except_list, ecx
+	pop	ebx
+	mov	esp, ebp
+	pop	ebp
+	ret	28					; 0000001cH
+?ACTION288_NewNodeTEST3@modEXECUTE3@@AAGXXZ ENDP	; modEXECUTE3::ACTION288_NewNodeTEST3
+text$1	ENDS
+END
