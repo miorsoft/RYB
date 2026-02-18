@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB↔HSL Geometric Conversion Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .visualization-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .viz-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .viz-box h2 {
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-align: center;
+            font-size: 1.8em;
+        }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffd700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffd700;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        #rSlider { background: linear-gradient(to right, #000, #f00); }
+        #gSlider { background: linear-gradient(to right, #000, #0f0); }
+        #bSlider { background: linear-gradient(to right, #000, #00f); }
+        
+        .value-display {
+            min-width: 50px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .color-preview {
+            width: 100%;
+            height: 80px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .legend {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .visualization-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RGB↔HSL Geometric Vector Conversion</h1>
+        
+        <div class="controls">
+            <h2 style="text-align: center; margin-bottom: 25px; color: #ffd700;">Color Controls</h2>
+            <div class="control-group">
+                <label>Red: <span id="rValue">128</span></label>
+                <div class="slider-container">
+                    <input type="range" id="rSlider" min="0" max="255" value="128">
+                    <div class="value-display" id="rDisplay">128</div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Green: <span id="gValue">128</span></label>
+                <div class="slider-container">
+                    <input type="range" id="gSlider" min="0" max="255" value="128">
+                    <div class="value-display" id="gDisplay">128</div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Blue: <span id="bValue">128</span></label>
+                <div class="slider-container">
+                    <input type="range" id="bSlider" min="0" max="255" value="128">
+                    <div class="value-display" id="bDisplay">128</div>
+                </div>
+            </div>
+            <div class="color-preview" id="colorPreview"></div>
+        </div>
+        
+        <div class="visualization-container">
+            <div class="viz-box">
+                <h2>RGB → HSL (Forward Transform)</h2>
+                <canvas id="rgb2hsl" width="600" height="600"></canvas>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ff0000;"></div>
+                        <span>Red Vector (0°)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #00ff00;"></div>
+                        <span>Green Vector (120°)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #0000ff;"></div>
+                        <span>Blue Vector (240°)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ff00ff;"></div>
+                        <span>Resultant Vector (Hue & Saturation)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="viz-box">
+                <h2>HSL → RGB (Inverse Transform)</h2>
+                <canvas id="hsl2rgb" width="600" height="600"></canvas>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ff00ff;"></div>
+                        <span>Hue Vector (H × 2π, magnitude S)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ffa500;"></div>
+                        <span>Decomposed Components (C1, C2 in orange)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(to right, #ff666666, #ff0000);"></div>
+                        <span>Dashed = before L_offset, Solid = after L_offset</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #00aa00;"></div>
+                        <span>Double arrows = L_offset applied along V1/V2/V3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas1 = document.getElementById('rgb2hsl');
+        const ctx1 = canvas1.getContext('2d');
+        const canvas2 = document.getElementById('hsl2rgb');
+        const ctx2 = canvas2.getContext('2d');
+        
+        const centerX = 300;
+        const centerY = 300;
+        const scale = 200;
+        
+        // RGB to HSL conversion
+        function rgb2hsl(r, g, b) {
+            r = r / 255;
+            g = g / 255;
+            b = b / 255;
+            
+            const v1x = r;
+            const v1y = 0;
+            const v2x = -0.5 * g;
+            const v2y = 0.86602537 * g;
+            const v3x = -0.5 * b;
+            const v3y = -0.86602537 * b;
+            
+            const sumX = v1x + v2x + v3x;
+            const sumY = v1y + v2y + v3y;
+            
+            const s = Math.sqrt(sumX * sumX + sumY * sumY);
+            const l = (r + g + b) / 3;
+            let h = Math.atan2(sumY, sumX);
+            
+            if (h < 0) h += 2 * Math.PI;
+            h = h / (2 * Math.PI);
+            
+            return {
+                h, s, l,
+                vectors: {
+                    v1: {x: v1x, y: v1y},
+                    v2: {x: v2x, y: v2y},
+                    v3: {x: v3x, y: v3y},
+                    sum: {x: sumX, y: sumY}
+                }
+            };
+        }
+        
+        // HSL to RGB conversion
+        function hsl2rgb(h, s, l) {
+            const hAngle = h * 2 * Math.PI;
+            const hueVecX = Math.cos(hAngle) * s;
+            const hueVecY = Math.sin(hAngle) * s;
+            
+            let r = 0, g = 0, b = 0;
+            let comp1 = 0, comp2 = 0;
+            let v1, v2;
+            
+            const PI2_13 = (2 * Math.PI) / 3;
+            const PI2_23 = (2 * Math.PI) * 2 / 3;
+            
+            if (hAngle < PI2_13) {
+                v1 = {x: 1, y: 0};
+                v2 = {x: -0.5, y: 0.86602537};
+                [comp1, comp2] = decomposeVector(hueVecX, hueVecY, v1, v2);
+                r = comp1;
+                g = comp2;
+            } else if (hAngle < PI2_23) {
+                v1 = {x: -0.5, y: 0.86602537};
+                v2 = {x: -0.5, y: -0.86602537};
+                [comp1, comp2] = decomposeVector(hueVecX, hueVecY, v1, v2);
+                g = comp1;
+                b = comp2;
+            } else {
+                v1 = {x: -0.5, y: -0.86602537};
+                v2 = {x: 1, y: 0};
+                [comp1, comp2] = decomposeVector(hueVecX, hueVecY, v1, v2);
+                b = comp1;
+                r = comp2;
+            }
+            
+            const lOffset = l - (r + g + b) / 3;
+            r = Math.max(0, Math.min(1, r + lOffset));
+            g = Math.max(0, Math.min(1, g + lOffset));
+            b = Math.max(0, Math.min(1, b + lOffset));
+            
+            return {
+                r: Math.round(r * 255),
+                g: Math.round(g * 255),
+                b: Math.round(b * 255),
+                hueVec: {x: hueVecX, y: hueVecY},
+                v1, v2, comp1, comp2
+            };
+        }
+        
+        function decomposeVector(vx, vy, v1, v2) {
+            const det = v1.x * v2.y - v1.y * v2.x;
+            const a = (vx * v2.y - vy * v2.x) / det;
+            const b = (v1.x * vy - v1.y * vx) / det;
+            return [a, b];
+        }
+        
+        function drawRGB2HSL(r, g, b) {
+            ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+            
+            // Draw grid
+            ctx1.strokeStyle = '#e0e0e0';
+            ctx1.lineWidth = 1;
+            for (let i = -1; i <= 1; i += 0.25) {
+                ctx1.beginPath();
+                ctx1.moveTo(centerX + i * scale, centerY - scale);
+                ctx1.lineTo(centerX + i * scale, centerY + scale);
+                ctx1.stroke();
+                
+                ctx1.beginPath();
+                ctx1.moveTo(centerX - scale, centerY + i * scale);
+                ctx1.lineTo(centerX + scale, centerY + i * scale);
+                ctx1.stroke();
+            }
+            
+            // Draw axes
+            ctx1.strokeStyle = '#666';
+            ctx1.lineWidth = 2;
+            ctx1.beginPath();
+            ctx1.moveTo(centerX - scale, centerY);
+            ctx1.lineTo(centerX + scale, centerY);
+            ctx1.stroke();
+            
+            ctx1.beginPath();
+            ctx1.moveTo(centerX, centerY - scale);
+            ctx1.lineTo(centerX, centerY + scale);
+            ctx1.stroke();
+            
+            // Draw unit circle
+            ctx1.strokeStyle = '#ccc';
+            ctx1.lineWidth = 1;
+            ctx1.setLineDash([5, 5]);
+            ctx1.beginPath();
+            ctx1.arc(centerX, centerY, scale, 0, 2 * Math.PI);
+            ctx1.stroke();
+            ctx1.setLineDash([]);
+            
+            const result = rgb2hsl(r, g, b);
+            const v = result.vectors;
+            
+            // Draw RGB component vectors
+            drawVector(ctx1, 0, 0, v.v1.x, -v.v1.y, '#ff0000', 3, 'R');
+            drawVector(ctx1, 0, 0, v.v2.x, -v.v2.y, '#00ff00', 3, 'G');
+            drawVector(ctx1, 0, 0, v.v3.x, -v.v3.y, '#0000ff', 3, 'B');
+            
+            // Draw dashed lines to show vector addition
+            ctx1.setLineDash([3, 3]);
+            ctx1.strokeStyle = 'rgba(255, 0, 0, 0.3)';
+            ctx1.lineWidth = 1;
+            ctx1.beginPath();
+            ctx1.moveTo(centerX + v.v1.x * scale, centerY - v.v1.y * scale);
+            ctx1.lineTo(centerX + v.sum.x * scale, centerY - v.sum.y * scale);
+            ctx1.stroke();
+            
+            ctx1.strokeStyle = 'rgba(0, 255, 0, 0.3)';
+            ctx1.beginPath();
+            ctx1.moveTo(centerX + v.v2.x * scale, centerY - v.v2.y * scale);
+            ctx1.lineTo(centerX + v.sum.x * scale, centerY - v.sum.y * scale);
+            ctx1.stroke();
+            
+            ctx1.strokeStyle = 'rgba(0, 0, 255, 0.3)';
+            ctx1.beginPath();
+            ctx1.moveTo(centerX + v.v3.x * scale, centerY - v.v3.y * scale);
+            ctx1.lineTo(centerX + v.sum.x * scale, centerY - v.sum.y * scale);
+            ctx1.stroke();
+            ctx1.setLineDash([]);
+            
+            // Draw resultant vector (Hue & Saturation)
+            drawVector(ctx1, 0, 0, v.sum.x, -v.sum.y, '#ff00ff', 4, 'H+S');
+            
+            // Draw angle arc for hue
+            const angle = Math.atan2(-v.sum.y, v.sum.x);
+            ctx1.strokeStyle = '#ff00ff';
+            ctx1.lineWidth = 2;
+            ctx1.beginPath();
+            ctx1.arc(centerX, centerY, 40, 0, angle, angle < 0);
+            ctx1.stroke();
+            
+            // Display values
+            ctx1.fillStyle = '#000';
+            ctx1.font = 'bold 16px Arial';
+            ctx1.fillText(`H = ${(result.h * 360).toFixed(1)}°`, 20, 30);
+            ctx1.fillText(`S = ${result.s.toFixed(3)}`, 20, 55);
+            ctx1.fillText(`L = ${result.l.toFixed(3)}`, 20, 80);
+            ctx1.fillText(`|Sum| = ${result.s.toFixed(3)}`, 20, 105);
+        }
+        
+        function drawHSL2RGB(r, g, b) {
+            ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+            
+            // Draw grid
+            ctx2.strokeStyle = '#e0e0e0';
+            ctx2.lineWidth = 1;
+            for (let i = -1; i <= 1; i += 0.25) {
+                ctx2.beginPath();
+                ctx2.moveTo(centerX + i * scale, centerY - scale);
+                ctx2.lineTo(centerX + i * scale, centerY + scale);
+                ctx2.stroke();
+                
+                ctx2.beginPath();
+                ctx2.moveTo(centerX - scale, centerY + i * scale);
+                ctx2.lineTo(centerX + scale, centerY + i * scale);
+                ctx2.stroke();
+            }
+            
+            // Draw axes
+            ctx2.strokeStyle = '#666';
+            ctx2.lineWidth = 2;
+            ctx2.beginPath();
+            ctx2.moveTo(centerX - scale, centerY);
+            ctx2.lineTo(centerX + scale, centerY);
+            ctx2.stroke();
+            
+            ctx2.beginPath();
+            ctx2.moveTo(centerX, centerY - scale);
+            ctx2.lineTo(centerX, centerY + scale);
+            ctx2.stroke();
+            
+            // Draw unit circle
+            ctx2.strokeStyle = '#ccc';
+            ctx2.lineWidth = 1;
+            ctx2.setLineDash([5, 5]);
+            ctx2.beginPath();
+            ctx2.arc(centerX, centerY, scale, 0, 2 * Math.PI);
+            ctx2.stroke();
+            ctx2.setLineDash([]);
+            
+            const hslResult = rgb2hsl(r, g, b);
+            const result = hsl2rgb(hslResult.h, hslResult.s, hslResult.l);
+            
+            // Draw basis vectors (lighter)
+            drawVector(ctx2, 0, 0, 1, 0, '#ffcccc', 2, 'V1');
+            drawVector(ctx2, 0, 0, -0.5, -0.86602537, '#ccffcc', 2, 'V2');
+            drawVector(ctx2, 0, 0, -0.5, 0.86602537, '#ccccff', 2, 'V3');
+            
+            // Draw hue vector
+            drawVector(ctx2, 0, 0, result.hueVec.x, -result.hueVec.y, '#ff00ff', 4, 'Hue Vec');
+            
+            // Draw decomposed components BEFORE lightness adjustment
+            if (result.v1 && result.v2) {
+                const comp1Vec = {
+                    x: result.v1.x * result.comp1,
+                    y: result.v1.y * result.comp1
+                };
+                const comp2Vec = {
+                    x: result.v2.x * result.comp2,
+                    y: result.v2.y * result.comp2
+                };
+                
+                drawVector(ctx2, 0, 0, comp1Vec.x, -comp1Vec.y, '#ff8800', 3, 'C1');
+                drawVector(ctx2, 0, 0, comp2Vec.x, -comp2Vec.y, '#ff8800', 3, 'C2');
+                
+                // Show vector addition
+                ctx2.setLineDash([3, 3]);
+                ctx2.strokeStyle = 'rgba(255, 136, 0, 0.3)';
+                ctx2.lineWidth = 1;
+                ctx2.beginPath();
+                ctx2.moveTo(centerX + comp1Vec.x * scale, centerY - comp1Vec.y * scale);
+                ctx2.lineTo(centerX + result.hueVec.x * scale, centerY - result.hueVec.y * scale);
+                ctx2.stroke();
+                
+                ctx2.beginPath();
+                ctx2.moveTo(centerX + comp2Vec.x * scale, centerY - comp2Vec.y * scale);
+                ctx2.lineTo(centerX + result.hueVec.x * scale, centerY - result.hueVec.y * scale);
+                ctx2.stroke();
+                ctx2.setLineDash([]);
+            }
+            
+            // Draw Lightness adjustment visualization along V1, V2, V3
+            const lOffset = hslResult.l - (result.comp1 + result.comp2) / 3;
+            
+            // Determine which components are active based on hue sector
+            let beforeR = 0, beforeG = 0, beforeB = 0;
+            let afterR = result.r / 255;
+            let afterG = result.g / 255;
+            let afterB = result.b / 255;
+            
+            const hAngle = hslResult.h * 2 * Math.PI;
+            const PI2_13 = (2 * Math.PI) / 3;
+            const PI2_23 = (2 * Math.PI) * 2 / 3;
+            
+            if (hAngle < PI2_13) {
+                beforeR = result.comp1;
+                beforeG = result.comp2;
+            } else if (hAngle < PI2_23) {
+                beforeG = result.comp1;
+                beforeB = result.comp2;
+            } else {
+                beforeB = result.comp1;
+                beforeR = result.comp2;
+            }
+            
+            // V1, V2, V3 basis vectors
+            const v1 = {x: 1, y: 0};
+            const v2 = {x: -0.5, y: 0.86602537};
+            const v3 = {x: -0.5, y: -0.86602537};
+            
+            // Draw vectors before L adjustment (dashed)
+            if (beforeR > 0.01) {
+                ctx2.setLineDash([5, 5]);
+                drawVector(ctx2, 0, 0, v1.x * beforeR, -v1.y * beforeR, '#ff6666', 2, '');
+                ctx2.setLineDash([]);
+            }
+            if (beforeG > 0.01) {
+                ctx2.setLineDash([5, 5]);
+                drawVector(ctx2, 0, 0, v2.x * beforeG, -v2.y * beforeG, '#66ff66', 2, '');
+                ctx2.setLineDash([]);
+            }
+            if (beforeB > 0.01) {
+                ctx2.setLineDash([5, 5]);
+                drawVector(ctx2, 0, 0, v3.x * beforeB, -v3.y * beforeB, '#6666ff', 2, '');
+                ctx2.setLineDash([]);
+            }
+            
+            // Draw vectors after L adjustment (solid) with L_offset arrows
+            if (afterR > 0.01) {
+                drawVectorWithLOffset(ctx2, 0, 0, v1.x * beforeR, -v1.y * beforeR, 
+                                      v1.x * afterR, -v1.y * afterR, '#ff0000', 'R');
+            }
+            if (afterG > 0.01) {
+                drawVectorWithLOffset(ctx2, 0, 0, v2.x * beforeG, -v2.y * beforeG,
+                                      v2.x * afterG, -v2.y * afterG, '#00ff00', 'G');
+            }
+            if (afterB > 0.01) {
+                drawVectorWithLOffset(ctx2, 0, 0, v3.x * beforeB, -v3.y * beforeB,
+                                      v3.x * afterB, -v3.y * afterB, '#0000ff', 'B');
+            }
+            
+            // Display values
+            ctx2.fillStyle = '#000';
+            ctx2.font = 'bold 16px Arial';
+            ctx2.fillText(`H = ${(hslResult.h * 360).toFixed(1)}°`, 20, 30);
+            ctx2.fillText(`S = ${hslResult.s.toFixed(3)}`, 20, 55);
+            ctx2.fillText(`L = ${hslResult.l.toFixed(3)}`, 20, 80);
+            ctx2.fillText(`L_offset = ${lOffset > 0 ? '+' : ''}${lOffset.toFixed(3)}`, 20, 105);
+            ctx2.fillText(`Final RGB:`, 20, 140);
+            ctx2.fillText(`R=${result.r} G=${result.g} B=${result.b}`, 20, 165);
+        }
+        
+        function drawVector(ctx, startX, startY, endX, endY, color, width, label) {
+            const sx = centerX + startX * scale;
+            const sy = centerY - startY * scale;
+            const ex = centerX + endX * scale;
+            const ey = centerY - endY * scale;
+            
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = width;
+            
+            // Draw line
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(ex, ey);
+            ctx.stroke();
+            
+            // Draw arrowhead
+            const angle = Math.atan2(ey - sy, ex - sx);
+            const arrowSize = 10;
+            ctx.beginPath();
+            ctx.moveTo(ex, ey);
+            ctx.lineTo(ex - arrowSize * Math.cos(angle - Math.PI / 6),
+                       ey - arrowSize * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(ex - arrowSize * Math.cos(angle + Math.PI / 6),
+                       ey - arrowSize * Math.sin(angle + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw label
+            if (label) {
+                ctx.fillStyle = color;
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText(label, ex + 10, ey - 10);
+            }
+            
+            // Draw dot at end
+            ctx.beginPath();
+            ctx.arc(ex, ey, 4, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        
+        function drawVectorWithLOffset(ctx, startX, startY, beforeEndX, beforeEndY, afterEndX, afterEndY, color, label) {
+            const sx = centerX + startX * scale;
+            const sy = centerY - startY * scale;
+            const beforeEx = centerX + beforeEndX * scale;
+            const beforeEy = centerY - beforeEndY * scale;
+            const afterEx = centerX + afterEndX * scale;
+            const afterEy = centerY - afterEndY * scale;
+            
+            // Draw the final vector (solid, thick)
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = 4;
+            
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(afterEx, afterEy);
+            ctx.stroke();
+            
+            // Draw arrowhead at final position
+            const angle = Math.atan2(afterEy - sy, afterEx - sx);
+            const arrowSize = 10;
+            ctx.beginPath();
+            ctx.moveTo(afterEx, afterEy);
+            ctx.lineTo(afterEx - arrowSize * Math.cos(angle - Math.PI / 6),
+                       afterEy - arrowSize * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(afterEx - arrowSize * Math.cos(angle + Math.PI / 6),
+                       afterEy - arrowSize * Math.sin(angle + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw dot at final position
+            ctx.beginPath();
+            ctx.arc(afterEx, afterEy, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw L_offset indicator (the difference between before and after)
+            const dist = Math.sqrt((afterEx - beforeEx) ** 2 + (afterEy - beforeEy) ** 2);
+            if (dist > 5) { // Only draw if there's a visible difference
+                const offsetColor = (afterEx - beforeEx) * beforeEndX + (afterEy - beforeEy) * (-beforeEndY) > 0 ? '#00aa00' : '#aa0000';
+                ctx.strokeStyle = offsetColor;
+                ctx.fillStyle = offsetColor;
+                ctx.lineWidth = 3;
+                
+                // Draw double-headed arrow showing L_offset
+                ctx.beginPath();
+                ctx.moveTo(beforeEx, beforeEy);
+                ctx.lineTo(afterEx, afterEy);
+                ctx.stroke();
+                
+                // Draw arrowhead at after position
+                const offsetAngle = Math.atan2(afterEy - beforeEy, afterEx - beforeEx);
+                const smallArrow = 7;
+                ctx.beginPath();
+                ctx.moveTo(afterEx, afterEy);
+                ctx.lineTo(afterEx - smallArrow * Math.cos(offsetAngle - Math.PI / 6),
+                           afterEy - smallArrow * Math.sin(offsetAngle - Math.PI / 6));
+                ctx.lineTo(afterEx - smallArrow * Math.cos(offsetAngle + Math.PI / 6),
+                           afterEy - smallArrow * Math.sin(offsetAngle + Math.PI / 6));
+                ctx.closePath();
+                ctx.fill();
+                
+                // Draw arrowhead at before position (pointing backwards)
+                ctx.beginPath();
+                ctx.moveTo(beforeEx, beforeEy);
+                ctx.lineTo(beforeEx + smallArrow * Math.cos(offsetAngle - Math.PI / 6),
+                           beforeEy + smallArrow * Math.sin(offsetAngle - Math.PI / 6));
+                ctx.lineTo(beforeEx + smallArrow * Math.cos(offsetAngle + Math.PI / 6),
+                           beforeEy + smallArrow * Math.sin(offsetAngle + Math.PI / 6));
+                ctx.closePath();
+                ctx.fill();
+                
+                // Draw dot at before position
+                ctx.beginPath();
+                ctx.arc(beforeEx, beforeEy, 4, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+            
+            // Draw label
+            if (label) {
+                ctx.fillStyle = color;
+                ctx.font = 'bold 16px Arial';
+                ctx.fillText(label, afterEx + 12, afterEy - 12);
+            }
+        }
+        
+        function updateVisualization() {
+            const r = parseInt(document.getElementById('rSlider').value);
+            const g = parseInt(document.getElementById('gSlider').value);
+            const b = parseInt(document.getElementById('bSlider').value);
+            
+            document.getElementById('rDisplay').textContent = r;
+            document.getElementById('gDisplay').textContent = g;
+            document.getElementById('bDisplay').textContent = b;
+            
+            const colorPreview = document.getElementById('colorPreview');
+            colorPreview.style.background = `rgb(${r}, ${g}, ${b})`;
+            
+            drawRGB2HSL(r, g, b);
+            drawHSL2RGB(r, g, b);
+        }
+        
+        // Event listeners
+        document.getElementById('rSlider').addEventListener('input', updateVisualization);
+        document.getElementById('gSlider').addEventListener('input', updateVisualization);
+        document.getElementById('bSlider').addEventListener('input', updateVisualization);
+        
+        // Initial draw
+        updateVisualization();
+    </script>
+</body>
+</html>
